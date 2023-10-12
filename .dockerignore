@@ -201,4 +201,4 @@ tags
 **/dkms.conf
 
 # Project settings
-**/out/*
+**/files/*

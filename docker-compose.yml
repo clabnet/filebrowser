@@ -7,11 +7,13 @@ services:
     restart: unless-stopped
     networks:
       - net
+    healthcheck:
+      disable: true      
     volumes:
     # data
       - ./files:/files
     # config
-      - ./config/database.db:/database/database.db
+      ##########- ./config/database.db:/database/database.db
       - ./config/.filebrowser.json:/.filebrowser.json
     ports:
       - 8088:80

@@ -8,10 +8,14 @@ services:
     networks:
       - net
     volumes:
+    # data
       - ./files:/files
+    # config
+      - ./config/database.db:/database/database.db
       - ./config/.filebrowser.json:/.filebrowser.json
     ports:
       - 8088:80
+    entrypoint: ["/filebrowser","--disable-preview-resize","--disable-type-detection-by-header","--cache-dir","/tmp"]
     # logging:
     #   driver: 'none'
 

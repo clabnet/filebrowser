@@ -3,7 +3,7 @@ version: '3.9'
 services:
   filebrowser:
     image: filebrowser/filebrowser:latest
-    container_name: filebrowser-new
+    container_name: fbrowser
     restart: unless-stopped
     networks:
       - net
@@ -13,11 +13,10 @@ services:
     # data
       - ./files:/files
     # config
-      ##########- ./config/database.db:/database/database.db
       - ./config/.filebrowser.json:/.filebrowser.json
     ports:
-      - 8088:80
-    entrypoint: ["/filebrowser","--disable-preview-resize","--disable-type-detection-by-header","--cache-dir","/tmp"]
+      - 4000:80
+    entrypoint: ["/filebrowser","--database=/config/database.db","--disable-thumbnails","--disable-preview-resize","--disable-type-detection-by-header","--cache-dir","/tmp"]
     # logging:
     #   driver: 'none'
 

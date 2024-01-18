@@ -8,16 +8,24 @@ services:
     networks:
       - net
     healthcheck:
-      disable: true      
+      disable: true
     ports:
       - 4000:80
     volumes:
       - ./config/.filebrowser.json:/.filebrowser.json
-      - ./files:/files
-      - public:/files
-    entrypoint: ["/filebrowser","--database=/config/database.db","--disable-thumbnails","--disable-preview-resize","--disable-type-detection-by-header","--cache-dir","/tmp"]
-    # logging:
-    #   driver: 'none'
+      - 'D:\_POMINI\src\backend\mediaservice\public:/files'
+      ###- '${USERPROFILE}/TEORESI/ASP-Pomini Spare Parts - General/GEMINI:/files'
+      ### - public:/files
+    entrypoint:
+      [
+        "/filebrowser",
+        "--database=/config/database.db",
+        "--disable-thumbnails",
+        "--disable-preview-resize",
+        "--disable-type-detection-by-header",
+        "--cache-dir",
+        "/tmp"
+      ]
 
 volumes:
   public:
